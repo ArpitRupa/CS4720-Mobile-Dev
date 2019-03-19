@@ -19,7 +19,16 @@
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
     "jest-expo": "^32.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "MobileProject",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
