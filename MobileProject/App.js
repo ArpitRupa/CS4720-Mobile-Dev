@@ -1,62 +1,132 @@
-import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading, Asset, Font, Icon } from 'expo';
-import AppNavigator from './navigation/AppNavigator';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import Icon from '@expo/vector-icons/Ionicons';
 
-export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
-  };
+import {
+  createSwitchNavigator,
+  createAppContainer,
+  createDrawerNavigator,
+  createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation';
 
+import LoginScreen from './screens/LoginScreen.js';
+class App extends Component {
   render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
+    return <AppContainer />;
+  }
+}
+export default App;
+
+// class WelcomeScreen extends Component {
+//   render() {
+//     return (
+//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//         <Button
+//           title="Login"
+//           onPress={() => this.props.navigation.navigate('Dashboard')}
+//         />
+//         <Button title="Sign Up" onPress={() => alert('button pressed')} />
+//       </View>
+//     );
+//   }
+// }
+
+class DashboardScreen extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>DashboardScreen</Text>
+      </View>
+    );
+  }
+}
+
+class Feed extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Feed</Text>
+      </View>
+    );
+  }
+}
+
+class Settings extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+          title="Logout"
+          onPress={() => this.props.navigation.navigate('Login')}
         />
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
-      );
+      </View>
+    );
+  }
+}
+
+class Profile extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Profile</Text>
+      </View>
+    );
+  }
+}
+
+const DashboardTabNavigator = createBottomTabNavigator(
+  {
+    Feed,
+    Profile,
+    Settings
+  },
+  {
+    navigationOptions: ({ navigation }) => {
+      const { routeName } = navigation.state.routes[navigation.state.index];
+      return {
+        headerTitle: routeName
+      };
     }
   }
+);
+const DashboardStackNavigator = createStackNavigator(
+  {
+    DashboardTabNavigator: DashboardTabNavigator
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        headerLeft: (
+          <Icon
+            style={{ paddingLeft: 10 }}
+            onPress={() => navigation.openDrawer()}
+            name="md-menu"
+            size={30}
+          />
+        )
+      };
+    }
+  }
+);
 
-  _loadResourcesAsync = async () => {
-    return Promise.all([
-      Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
-      ]),
-      Font.loadAsync({
-        // This is the font that we are using for our tab bar
-        ...Icon.Ionicons.font,
-        // We include SpaceMono because we use it in HomeScreen.js. Feel free
-        // to remove this if you are not using it in your app
-        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
-      }),
-    ]);
-  };
+const AppDrawerNavigator = createDrawerNavigator({
+  Dashboard: {
+    screen: DashboardStackNavigator
+  }
+});
 
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
+const AppSwitchNavigator = createSwitchNavigator({
+  Login: { screen: LoginScreen },
+  Dashboard: { screen: AppDrawerNavigator }
+});
 
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-  };
-}
+const AppContainer = createAppContainer(AppSwitchNavigator);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 });
