@@ -5,3 +5,9 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
+# Node
+node_modules
+*.log
+.nvm
+/bots/node_modules/
+package-lock.json
