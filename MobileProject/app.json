@@ -24,6 +24,19 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "extra": {
+      "firebase": {
+        "apiKey": "AIzaSyAZZby0acUJnOqOa2mZTyxrLUN_14R036I",
+        "authDomain": "dindin-632d1.firebaseapp.com",
+        "databaseURL": "https://dindin-632d1.firebaseio.com",
+        "projectId": "dindin-632d1",
+        "storageBucket": "dindin-632d1.appspot.com",
+        "messagingSenderId": "33416407705"
+      },
+      "facebook": {
+        "appId": "263332817936281"
+      }
     }
-  }
+  } 
 }

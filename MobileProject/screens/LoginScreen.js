@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import { WebBrowser,Facebook } from 'expo';
+import firebase from "./../firebase";
 
 import { MonoText } from '../components/StyledText';
 
@@ -16,6 +17,24 @@ export default class HomeScreen extends React.Component {
     static navigationOptions = {
         header: null,
     };
+
+    async loginWithFacebook() {
+
+        //ENTER YOUR APP ID 
+        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('263332817936281', { permissions: ['public_profile'] })
+
+        if (type == 'success') {
+
+            const credential = firebase.auth.FacebookAuthProvider.credential(token)
+            
+            console.log(firebase.auth().signInAndRetrieveDataWithCredential(credential));
+
+            firebase.auth().signInAndRetrieveDataWithCredential(credential).catch((error) => {
+                console.log(error)
+            })
+        }
+    }
+
 
     render() {
         return (
@@ -31,7 +50,7 @@ export default class HomeScreen extends React.Component {
                 <Text style={styles.getStartedContainer}> Connecting Food Lovers. </Text>
 
                 <View>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Dashboard')}>
+                    <TouchableOpacity onPress={() => this.loginWithFacebook()}>
                         <Image
                             source={require("../assets/Sliced/getStarted.png")}
                         />
@@ -46,13 +65,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-    },
-    developmentModeText: {
-        marginBottom: 20,
-        color: 'rgba(0,0,0,0.4)',
-        fontSize: 14,
-        lineHeight: 19,
-        textAlign: 'center',
     },
     contentContainer: {
         paddingTop: 30,
@@ -76,9 +88,6 @@ const styles = StyleSheet.create({
     },
     homeScreenFilename: {
         marginVertical: 7,
-    },
-    codeHighlightText: {
-        color: 'rgba(96,100,109, 0.8)',
     },
     codeHighlightContainer: {
         backgroundColor: 'rgba(0,0,0,0.05)',
@@ -120,16 +129,5 @@ const styles = StyleSheet.create({
     },
     navigationFilename: {
         marginTop: 5,
-    },
-    helpContainer: {
-        marginTop: 15,
-        alignItems: 'center',
-    },
-    helpLink: {
-        paddingVertical: 15,
-    },
-    helpLinkText: {
-        fontSize: 14,
-        color: '#2e78b7',
     },
 });
