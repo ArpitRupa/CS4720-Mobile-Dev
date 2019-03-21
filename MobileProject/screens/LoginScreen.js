@@ -13,25 +13,53 @@ import firebase from "./../firebase";
 
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
-    static navigationOptions = {
-        header: null,
-    };
+export default class LoginScreen extends React.Component {
+    
+
 
     async loginWithFacebook() {
 
-        //ENTER YOUR APP ID 
+        //get permission from facebook
         const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('263332817936281', { permissions: ['public_profile'] })
 
         if (type == 'success') {
 
             const credential = firebase.auth.FacebookAuthProvider.credential(token)
             
-            console.log(firebase.auth().signInAndRetrieveDataWithCredential(credential));
-
             firebase.auth().signInAndRetrieveDataWithCredential(credential).catch((error) => {
                 console.log(error)
             })
+
+        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,name,picture.type(large)`);
+        const userInfo = await response.json();
+        this.setState({ userInfo });
+        const name = userInfo.name;
+        const pictureUrl = userInfo.picture.data.url;
+        const uid = userInfo.id;
+        //check if the user id is existant in the database
+        firebase.database().ref('Users').orderByChild('uid').equalTo(uid).once("value", snapshot => {  
+            if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    console.log("exists!", userData);
+            } else {
+                //if uid not existant in database, create new entry
+                firebase.database().ref('Users/' + uid).set({
+                    uid,
+                    name,
+                    pictureUrl
+                }).then((data) => {
+                    //success callback
+                    console.log('data ', data)
+                }).catch((error) => {
+                    //error callback
+                    console.log('error ', error)
+                })
+                }
+            });
+
+        //navigate to the dashboard
+        this.props.navigation.navigate('Dashboard');
+
         }
     }
 
@@ -44,6 +72,10 @@ export default class HomeScreen extends React.Component {
                         <Image
                             source={require("../assets/Sliced/Illustration.png")}
                         />
+                        {/* <Image
+                            style={styles.welcome}
+                            source={require("../assets/Sliced/tr.png")}
+                        /> */}
                     </View>
                 </ScrollView>
 

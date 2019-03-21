@@ -13,25 +13,6 @@ import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
-
-  async loginWithFacebook() {
-
-    //ENTER YOUR APP ID 
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('<APP ID>', { permissions: ['public_profile'] })
-
-    if (type == 'success') {
-
-      const credential = firebase.auth.FacebookAuthProvider.credential(token)
-
-      firebase.auth().signInWithCredential(credential).catch((error) => {
-        console.log(error)
-      })
-    }
-  }
 
 
   render() {
