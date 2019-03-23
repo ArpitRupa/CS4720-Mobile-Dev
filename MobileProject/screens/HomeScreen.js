@@ -19,16 +19,16 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
+          <View style={styles.bigImage}>
             <Image
               source={require("../assets/Sliced/Illustration.png")}
             />
           </View>
         </ScrollView>
 
-        <Text style={styles.getStartedContainer}> Connecting Food Lovers. </Text>
+        <Text style={styles.sloganText}> Connecting Food Lovers. </Text>
 
-        <View>
+        <View style={styles.getStartedButton}>
           <TouchableOpacity onPress={() => () => this.loginWithFacebook()}>
           <Image
             source={require("../assets/Sliced/getStarted.png")}
@@ -45,17 +45,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
+  bigImage: {
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 10,
@@ -67,10 +60,14 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
-    marginBottom: 185,
+  sloganText: {
+    flex:1,
     alignItems: 'center',
-    marginHorizontal: 100,
+  },
+  getStartedButton: {
+    flex: 1,
+    aaspectRatio: 1.5,
+    resizeMode: 'contain',
   },
   homeScreenFilename: {
     marginVertical: 7,
