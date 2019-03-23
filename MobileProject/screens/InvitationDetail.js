@@ -37,14 +37,22 @@ export default class InvitationDetail extends React.Component {
         if (this.state.isLoaded) {
             return (
                 <MapView
-                    style={styles.container}
+                    showsUserLocation
+                    followsUserLocation
+                    style={styles.map}
                     initialRegion={{
                         latitude: this.state.userLocation.coords.latitude,
                         longitude: this.state.userLocation.coords.longitude,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
+                        latitudeDelta: 0.00922,
+                        longitudeDelta: 0.00421,
                     }}
-                />
+                >
+                    {/* <MapView.Marker
+                        coordinate={this.state.userLocation.coords}
+                        title="My Marker"
+                        description="Some description"
+                    /> */}
+                </MapView>
             )
         }
         return (
@@ -67,5 +75,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 30,
+    },
+    map: {
+    ...StyleSheet.absoluteFillObject
     }
 });
