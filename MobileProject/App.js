@@ -75,7 +75,7 @@ const DashboardStackNavigator = createStackNavigator(
 
 
 const AppSwitchNavigator = createSwitchNavigator({
-  // Login: { screen: LoginScreen},
+  Login: { screen: LoginScreen},
   Dashboard: { screen: DashboardStackNavigator }
 });
 
