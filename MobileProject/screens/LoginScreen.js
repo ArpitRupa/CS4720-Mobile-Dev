@@ -68,7 +68,7 @@ export default class LoginScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-                    <View style={styles.welcomeContainer}>
+                    <View style={styles.bigImage}>
                         <Image
                             source={require("../assets/Sliced/Illustration.png")}
                         />
@@ -79,11 +79,12 @@ export default class LoginScreen extends React.Component {
                     </View>
                 </ScrollView>
 
-                <Text style={styles.getStartedContainer}> Connecting Food Lovers. </Text>
+                <Text style={styles.sloganText}> Connecting Food Lovers. </Text>
 
                 <View>
                     <TouchableOpacity onPress={() => this.loginWithFacebook()}>
-                        <Image
+                        <Image 
+                            style={styles.getStartedButton}
                             source={require("../assets/Sliced/getStarted.png")}
                         />
                     </TouchableOpacity>
@@ -101,10 +102,15 @@ const styles = StyleSheet.create({
     contentContainer: {
         paddingTop: 30,
     },
-    welcomeContainer: {
+    bigImage: {
         alignItems: 'center',
         marginTop: 20,
         marginBottom: 10,
+    },
+
+    getStartedButton: {
+        aaspectRatio: 1.5,
+        resizeMode: 'contain',
     },
     welcomeImage: {
         width: 100,
@@ -113,7 +119,7 @@ const styles = StyleSheet.create({
         marginTop: 3,
         marginLeft: -10,
     },
-    getStartedContainer: {
+    sloganText: {
         marginBottom: 185,
         alignItems: 'center',
         marginHorizontal: 100,
