@@ -9,5 +9,6 @@ npm-debug.*
 node_modules
 *.log
 .nvm
+*.env
 /bots/node_modules/
 package-lock.json

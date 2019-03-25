@@ -10,17 +10,20 @@ import {
 } from 'react-native';
 import { WebBrowser,Facebook } from 'expo';
 import firebase from "./../firebase";
+import { FacebookID } from 'react-native-dotenv'
 
 import { MonoText } from '../components/StyledText';
 
 export default class LoginScreen extends React.Component {
     
-
+    state = {
+        userAuthenticated:false,
+    };
 
     async loginWithFacebook() {
 
         //get permission from facebook
-        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('263332817936281', { permissions: ['public_profile'] })
+        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(FacebookID, { permissions: ['public_profile'] })
 
         if (type == 'success') {
 
@@ -40,7 +43,7 @@ export default class LoginScreen extends React.Component {
         firebase.database().ref('Users').orderByChild('uid').equalTo(uid).once("value", snapshot => {  
             if (snapshot.exists()) {
                     const userData = snapshot.val();
-                    console.log("exists!", userData);
+                    console.log("Barry is not good at Smash!")
             } else {
                 //if uid not existant in database, create new entry
                 firebase.database().ref('Users/' + uid).set({
@@ -77,14 +80,22 @@ export default class LoginScreen extends React.Component {
                             source={require("../assets/Sliced/tr.png")}
                         /> */}
                     </View>
+                        <Text style={styles.sloganText}> 
+                           Connecting Food Lovers. 
+                        </Text>
                 </ScrollView>
-
-                <Text style={styles.sloganText}> Connecting Food Lovers. </Text>
-
                 <View>
-                    <TouchableOpacity onPress={() => this.loginWithFacebook()}>
+                    < TouchableOpacity
+                    style = {
+                        styles.getStartedButton
+                    }
+                    onPress = {
+                        () => this.loginWithFacebook()
+                    } >
                         <Image 
-                            style={styles.getStartedButton}
+                            style = {
+                                styles.getStartedImage
+                            }
                             source={require("../assets/Sliced/getStarted.png")}
                         />
                     </TouchableOpacity>
@@ -97,14 +108,12 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-    },
-    contentContainer: {
-        paddingTop: 30,
+        width: "100%",
+        justifyContent: "center", 
     },
     bigImage: {
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 10,
         marginBottom: 10,
     },
 
@@ -112,34 +121,15 @@ const styles = StyleSheet.create({
         aaspectRatio: 1.5,
         resizeMode: 'contain',
     },
-    welcomeImage: {
-        width: 100,
-        height: 80,
-        resizeMode: 'contain',
-        marginTop: 3,
-        marginLeft: -10,
+    getStartedImage: {
+        width:"100%",
     },
     sloganText: {
-        marginBottom: 185,
-        alignItems: 'center',
-        marginHorizontal: 100,
+        textAlignVertical: "center", 
+        textAlign: "center",
+        marginTop: -10,
     },
-    homeScreenFilename: {
-        marginVertical: 7,
-    },
-    codeHighlightContainer: {
-        backgroundColor: 'rgba(0,0,0,0.05)',
-        borderRadius: 3,
-        paddingHorizontal: 4,
-    },
-    getStartedText: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginTop: 0,
-        width: 200,
-        backgroundColor: 'yellow',
-    },
+    
     tabBarInfoContainer: {
         position: 'absolute',
         bottom: 0,
@@ -159,13 +149,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fbfbfb',
         paddingVertical: 20,
-    },
-    tabBarInfoText: {
-        fontSize: 17,
-        color: 'rgba(96,100,109, 1)',
-        textAlign: 'center',
-    },
-    navigationFilename: {
-        marginTop: 5,
     },
 });
