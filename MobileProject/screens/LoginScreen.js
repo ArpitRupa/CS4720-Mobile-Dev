@@ -70,7 +70,7 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+
                     <View style={styles.bigImage}>
                         <Image
                             source={require("../assets/Sliced/Illustration.png")}
@@ -83,7 +83,7 @@ export default class LoginScreen extends React.Component {
                         <Text style={styles.sloganText}> 
                            Connecting Food Lovers. 
                         </Text>
-                </ScrollView>
+                
                 <View>
                     < TouchableOpacity
                     style = {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     },
 
     getStartedButton: {
-        aaspectRatio: 1.5,
+        aspectRatio: 1.5,
         resizeMode: 'contain',
     },
     getStartedImage: {
