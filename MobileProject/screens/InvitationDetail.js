@@ -5,6 +5,10 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 
 export default class InvitationDetail extends React.Component {
     
+    static navigationOptions = {
+        title: 'Event',
+    };
+
     render() {
         return (
              <MapComponent />
