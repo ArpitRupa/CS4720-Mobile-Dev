@@ -2,6 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, ScrollView, Picker, 
     TouchableOpacity, Image, TextInput } from 'react-native';
 import InviteMap from './../components/InviteMap';
+import { MapView, Location, Permissions } from 'expo';
+import Geocoder from 'react-native-geocoding';
+import { googleMap } from 'react-native-dotenv'
+
+
 
 const hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
     "11", "12", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", 
@@ -23,19 +28,64 @@ export default class CreateEvent extends React.Component {
         this.state = { minute:"",second:"", address:"", lat:0, long:0 };
     }
 
-    async getCurrentLocation() {
+    handleTextChange (text) {
+        this.setState({
+            ...this.state,
+            address: text
+        });
+        Geocoder.from(this.state.address)
+            .then(json => {
+                var location = json.results[0].geometry.location;
+                // console.log(location);
+                this.setState({
+                    ...this.state,
+                    location:location
+                });
+                this.setState({
+                    ...this.state,
+                    lat: this.state.location.lat,
+                    long: this.state.location.lng
+                })
+                
+            })
+            .catch(error => console.warn(error));
+        
+        console.log(this.state);
+        
+    }
+
+    componentDidMount () {
+        Geocoder.init(googleMap);
+    }
+
+    getCurrentLocation = async () => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
+        // console.log(status);
         if (status == 'granted') {
             let location = await Location.getCurrentPositionAsync({});
+            // console.log(location);
             this.setState({
                 ...this.state,
                 lat: location.coords.latitude,
                 long: location.coords.longitude,
             });
+            Geocoder.from(this.state.lat, this.state.long)
+            .then(json => {
+                var addressComponent = json.results[0].formatted_address;
+                // console.log(addressComponent);
+                this.setState({
+                    ...this.state,
+                    address: addressComponent
+                })
+            })
+            .catch(error => console.warn(error));
         }
-
-        console.log(this.state);
     }
+
+    toInvitePage () {
+        this.props.navigation.push('InviteScreen', { address: this.state.address, hours: this.state.minute, mins: this.state.second});
+    }
+
 
     render() {
         return (
@@ -85,7 +135,7 @@ export default class CreateEvent extends React.Component {
                                     ...this.state,
                                     second: itemValue
                                 })
-                                console.log(this.state);
+                                // console.log(this.state);
                             }
                             }>
                             {minutes.map((opt, i) => (
@@ -97,10 +147,7 @@ export default class CreateEvent extends React.Component {
                 <View style={styles.search}>
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={(text) => this.setState({
-                            ...this.state,
-                            address: text
-                        })}
+                        onChangeText={(text) => this.handleTextChange(text)}
                         placeholder="Enter an address..."
                         value={this.state.address}
                         placeholderTextColor = {
@@ -111,9 +158,9 @@ export default class CreateEvent extends React.Component {
                         style={
                             styles.locationButton
                         }
-                        onPress={() => {
-                            () => this.getCurrentLocation()
-                        }} >
+                        onPress={
+                            this.getCurrentLocation
+                        } >
                         <Image
                             style={
                                 styles.locationImage
@@ -129,7 +176,10 @@ export default class CreateEvent extends React.Component {
                     < TouchableOpacity
                         style={
                             styles.SendButton
-                        } >
+                        }
+                        onPress={
+                            () => this.toInvitePage()
+                        } > 
                         <Image
                             style={
                                 styles.SendImage
@@ -155,19 +205,17 @@ const styles = StyleSheet.create({
     search: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: '#dedfe0',
     },
     map: {
         flex: 5,
-        backgroundColor: '#17db0d',
     },
     minute: {
         flex:10,
-        backgroundColor: '#ffff00'
+        backgroundColor: '#afebff'
     },
     second: {
         flex: 10,
-        backgroundColor: '#00ff00'
+        backgroundColor: '#afebff'
     },
     colon: {
         flex: 1,
@@ -191,7 +239,6 @@ const styles = StyleSheet.create({
         fontSize:35,
     },
     SendButton: {
-        aaspectRatio: 1.5,
         resizeMode: 'contain',
     },
     SendImage: {

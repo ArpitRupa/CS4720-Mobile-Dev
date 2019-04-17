@@ -39,7 +39,6 @@ export default class InviteMap extends React.Component {
             return (
                 <MapView
                     showsUserLocation
-                    followsUserLocation
                     style={styles.map}
                     initialRegion={{
                         latitude: this.state.userLocation.coords.latitude,

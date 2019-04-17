@@ -12,6 +12,7 @@ import {
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation';
+import InviteScreen from './screens/InviteScreen.js'
 import LoginScreen from './screens/LoginScreen.js';
 
 class App extends Component {
@@ -64,6 +65,7 @@ const DashboardStackNavigator = createStackNavigator(
     Feed: Feed,
     InvitationDetail : InvitationDetail,
     CreateEvent: CreateEvent,
+    InviteScreen: InviteScreen
     
   },
 );
