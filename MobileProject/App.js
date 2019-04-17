@@ -4,6 +4,7 @@ import Icon from '@expo/vector-icons/Ionicons';
 import firebase from './firebase';
 import InvitationDetail from './screens/InvitationDetail.js';
 import CreateEvent from './screens/CreateEvent.js';
+import HomeScreen from './screens/HomeScreen.js';
 
 import {
   createSwitchNavigator,
@@ -73,7 +74,7 @@ const DashboardStackNavigator = createStackNavigator(
 
 
 const AppSwitchNavigator = createSwitchNavigator({
-  // Login: { screen: LoginScreen},
+  Login: { screen: LoginScreen},
   Dashboard: { screen: DashboardStackNavigator }
 });
 
