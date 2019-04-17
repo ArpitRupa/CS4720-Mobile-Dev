@@ -108,8 +108,7 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: "100%",
-        justifyContent: "center", 
+        width: "100%", 
     },
     bigImage: {
         alignItems: 'center',
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
     },
 
     getStartedButton: {
-        aaspectRatio: 1.5,
+        aspectRatio: 1.5,
         resizeMode: 'contain',
     },
     getStartedImage: {

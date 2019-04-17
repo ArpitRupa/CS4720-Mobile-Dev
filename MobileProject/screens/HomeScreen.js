@@ -226,7 +226,7 @@ export default class HomeScreen extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {/*<Text>Feed</Text>
         <Button
           title="Map"
@@ -242,7 +242,7 @@ export default class HomeScreen extends Component {
         title="Search"
         color="#fff"
       />*/}
-        <ScrollView>
+        <ScrollView horizontal='true' showsHorizontalScrollIndicator={false}>
           <View>
             <Button title="Jan"
               onPress={
@@ -341,7 +341,7 @@ export default class HomeScreen extends Component {
             () => this.props.navigation.navigate('InvitationDetail')
           }
         />
-      </View>
+      </ScrollView>
     );
   }
 }

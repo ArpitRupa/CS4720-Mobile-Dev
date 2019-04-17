@@ -63,7 +63,7 @@ class Feed extends Component {
 
 const DashboardStackNavigator = createStackNavigator(
   {
-    Feed: Feed,
+    Feed: HomeScreen,
     InvitationDetail : InvitationDetail,
     CreateEvent: CreateEvent,
     InviteScreen: InviteScreen
