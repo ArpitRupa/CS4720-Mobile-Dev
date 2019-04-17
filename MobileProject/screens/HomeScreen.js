@@ -111,16 +111,17 @@ export default class HomeScreen extends Component {
   }
   createCards = () => {
     let cards = []
-
+    let currentCardInfo = ""
     for (let i = 0; i < pendEvents.length; i++) {
       //let children = []
       //for(let j=0;j<5;j++) {
       //  children.push(<td>{name[i]}</td>)
       //}
+      currentCardInfo = weekday[i] + " " + day[i] + " " + month[i] + " - " + time[i]
       cards.push(<Card id="button"
         width={(300)}
         height={(500)}
-        content={weekday[i] + " " + day[i] + " " + month[i] + " - " + time[i]}
+        content={currentCardInfo}
         source={{ uri: profilePic }}
         title={name[i]}
         imageWidth={75}
@@ -128,7 +129,8 @@ export default class HomeScreen extends Component {
         roundedImage={true}
         roundedImageValue={50}
         imageMargin={{ top: 10 }}
-        onPress={this.updateText}>
+        onPress={ () => this.props.navigation.push('InvitationDetail', { name: name[i], picture: profilePic, cardInfo: currentCardInfo})
+      }>
 
       </Card>);
     }
@@ -183,20 +185,19 @@ export default class HomeScreen extends Component {
     //console.log(this.state.show);
     if ("Jan" == this.state.show) {
       return (
-        <Agenda id="Jan"></Agenda>
+        <Agenda navigate1={this.props.navigation} id="Jan"></Agenda>
       );
     }
-    if ("Feb" == this.state.show) { return (<Agenda id="Feb"></Agenda>); }
-    if ("Mar" == this.state.show) { return (<Agenda id="Mar"></Agenda>); }
-    if ("Apr" == this.state.show) { return (<Agenda id="Apr"></Agenda>); }
-    if ("May" == this.state.show) { return (<Agenda id="May"></Agenda>); }
-    if ("Jun" == this.state.show) { return (<Agenda id="Jun"></Agenda>); }
-    if ("Jul" == this.state.show) { return (<Agenda id="Jul"></Agenda>); }
-    if ("Aug" == this.state.show) { return (<Agenda id="Aug"></Agenda>); }
-    if ("Sep" == this.state.show) { return (<Agenda id="Sep"></Agenda>); }
-    if ("Oct" == this.state.show) { return (<Agenda id="Oct"></Agenda>); }
-    if ("Nov" == this.state.show) { return (<Agenda id="Nov"></Agenda>); }
-    if ("Dec" == this.state.show) { return (<Agenda id="Dec"></Agenda>); }
+    if ("Feb" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Feb"></Agenda>); }
+    if ("Mar" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Mar"></Agenda>); }
+    if ("Apr" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Apr"></Agenda>); }
+    if ("May" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="May"></Agenda>); }
+    if ("Jun" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Jun"></Agenda>); }
+    if ("Jul" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Jul"></Agenda>); }
+    if ("Aug" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Aug"></Agenda>); }
+    if ("Sep" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Sep"></Agenda>); }
+    if ("Oct" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Nov"></Agenda>); }
+    if ("Dec" == this.state.show) { return (<Agenda navigate1={this.props.navigation} id="Dec"></Agenda>); }
   }
   static navigationOptions = {
     title: 'DinDin',

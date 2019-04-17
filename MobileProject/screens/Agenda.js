@@ -21,11 +21,13 @@ function snapshotToArray(snapshot) {
 
 class Agenda extends Component {
 
+     
     render() {
+        const navigate = this.props.navigate1;
         let dates;
         // HARD CODED USER LOGGED IN BUT WILL FIX LATER
         let card;
-        const addButton = <TouchableOpacity title="Add Event"><Image source={require("../assets/Sliced/add_new_event.png")} /></TouchableOpacity>;
+        const addButton = <TouchableOpacity title="Add Event" onPress={() => navigate.push('CreateEvent')}><Image source={require("../assets/Sliced/add_new_event.png")} /></TouchableOpacity>;
         var firebaseRef = firebase.database().ref('Users').orderByChild('uid').equalTo("2376854179025779");
         firebaseRef.ref.child('2376854179025779/accepted_events').once("value", snapshot => {
             if (snapshot.exists()) {

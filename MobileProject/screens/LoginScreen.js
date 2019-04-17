@@ -69,36 +69,47 @@ export default class LoginScreen extends React.Component {
 
     render() {
         return (
+            // <View style={styles.container}>
+            //     <ScrollView style={styles.subContainer}>
+            //         <View style={styles.bigImage}>
+            //             <Image
+            //                 source={require("../assets/Sliced/Illustration.png")}
+            //             />
+            //             {/* <Image
+            //                 style={styles.welcome}
+            //                 source={require("../assets/Sliced/tr.png")}
+            //             /> */}
+            //         </View>
+            //             <Text style={styles.sloganText}> 
+            //                Connecting Food Lovers. 
+            //             </Text>
+            //     </ScrollView>
+            //     <View>
+            //         < TouchableOpacity
+            //         style = {
+            //             styles.getStartedButton
+            //         }
+            //         onPress = {
+            //             () => this.loginWithFacebook()
+            //         } >
+            //             <Image 
+            //                 style = {
+            //                     styles.getStartedImage
+            //                 }
+            //                 source={require("../assets/Sliced/getStarted.png")}
+            //             />
+            //         </TouchableOpacity>
+            //     </View>
+            // </View>
             <View style={styles.container}>
-                <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-                    <View style={styles.bigImage}>
-                        <Image
-                            source={require("../assets/Sliced/Illustration.png")}
-                        />
-                        {/* <Image
-                            style={styles.welcome}
-                            source={require("../assets/Sliced/tr.png")}
-                        /> */}
-                    </View>
-                        <Text style={styles.sloganText}> 
-                           Connecting Food Lovers. 
-                        </Text>
-                </ScrollView>
+                <View style={styles.bigImage}>
+
+                </View>
                 <View>
-                    < TouchableOpacity
-                    style = {
-                        styles.getStartedButton
-                    }
-                    onPress = {
-                        () => this.loginWithFacebook()
-                    } >
-                        <Image 
-                            style = {
-                                styles.getStartedImage
-                            }
-                            source={require("../assets/Sliced/getStarted.png")}
-                        />
-                    </TouchableOpacity>
+
+                </View>
+                <View style={styles.getStartedButton}>
+
                 </View>
             </View>
         );
@@ -108,17 +119,21 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: "100%", 
+    },
+    subContainer: {
+        flex: 1, 
     },
     bigImage: {
         alignItems: 'center',
         marginTop: 10,
         marginBottom: 10,
+        backgroundColor: "#4286f4"
     },
 
     getStartedButton: {
         aspectRatio: 1.5,
         resizeMode: 'contain',
+        backgroundColor: "#4286f4"
     },
     getStartedImage: {
         width:"100%",
@@ -127,26 +142,5 @@ const styles = StyleSheet.create({
         textAlignVertical: "center", 
         textAlign: "center",
         marginTop: -10,
-    },
-    
-    tabBarInfoContainer: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { height: -3 },
-                shadowOpacity: 0.1,
-                shadowRadius: 3,
-            },
-            android: {
-                elevation: 20,
-            },
-        }),
-        alignItems: 'center',
-        backgroundColor: '#fbfbfb',
-        paddingVertical: 20,
     },
 });
