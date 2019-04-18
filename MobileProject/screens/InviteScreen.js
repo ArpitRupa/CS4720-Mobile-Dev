@@ -54,7 +54,8 @@ export default class InviteScreen extends React.Component {
             firebase.database().ref('event/').push({
                     address: this.props.navigation.state.params.address,
                     day: '1',
-                    month: 'January',
+                    weekday: 'Friday',
+                    month: 'Jan',
                     name: 'Arpit Rupa',
                     time:  this.props.navigation.state.params.hours + ":" + this.props.navigation.state.params.mins
             }).then((snap) => {

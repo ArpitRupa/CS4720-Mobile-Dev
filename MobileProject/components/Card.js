@@ -1,10 +1,46 @@
 import React, { Component } from 'react'
 import { View, Dimensions, Text, Platform, TouchableOpacity, Image, Button } from 'react-native';
 import PropTypes from 'prop-types'
+import firebase from "./../firebase";
+
+
 
 class Card extends Component {
 
   // TODO: button olayını geliştir
+  accept = () => {
+    firebase.database().ref('Users/2376854179025779/accepted_events').equalTo(this.props.class).once("value", snapshot => {
+      if (snapshot.exists()) {
+        console.log("Already in");
+} 
+else {
+  firebase.database().ref('Users/2376854179025779/accepted_events/'+this.props.class).set({
+    'event_id': this.props.class
+}).then((data) => {
+    //success callback
+    console.log('data ', data)
+}).catch((error) => {
+    //error callback
+    console.log('error ', error)
+})
+}
+    });
+    firebase.database().ref('Users/2376854179025779/invited_events/'+this.props.class).once("value", snapshot => {
+      if (snapshot.exists()) {
+        console.log("Delete");
+        firebase.database().ref('Users/2376854179025779/invited_events/'+this.props.class).remove();
+       
+} 
+    });
+  }
+  decline = () => {
+    firebase.database().ref('Users/2376854179025779/invited_events/'+this.props.class).once("value", snapshot => {
+      if (snapshot.exists()) {
+        console.log("Delete");
+        firebase.database().ref('Users/2376854179025779/invited_events/'+this.props.class).remove();
+       
+} });
+  }
   render() {
     const container = {
       overflow    : 'hidden',
@@ -81,7 +117,7 @@ class Card extends Component {
       } }>
         { this.props.onPress !== undefined ?
           <TouchableOpacity onPress={ this.props.onPress }>{ content }</TouchableOpacity> : content }
-          { this.props.id === "button" ? <View><Button title ="Accept"></Button><Button title ="Decline"></Button></View> : undefined }
+          { this.props.id === "button" ? <View><Button onClick = {this.props.color = '#f4511e'}title ="Accept" onPress = {() => this.accept()}></Button><Button title ="Decline" onPress = {() => this.decline()}></Button></View> : undefined }
       </View>
     )
   }

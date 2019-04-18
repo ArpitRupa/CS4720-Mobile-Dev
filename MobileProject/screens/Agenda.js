@@ -63,26 +63,26 @@ class Agenda extends Component {
             <Text>February 23</Text><Text>February 24</Text><Text>February 25</Text><Text>February 26</Text>
             <Text>February 27</Text><Text>February 28</Text></View>;
         const mar = <View><Text>March 1</Text>{addButton}<Text>March 2</Text>{addButton}
-            <Text>March 3</Text>{addButton}<Text>March 4</Text>{addButton}<Text>March 5</Text>{addButton}<Text>March 6</Text>
-            <Text>March 7</Text><Text>March 8</Text><Text>March 9</Text><Text>March 10</Text>
+            <Text>March 3</Text>{addButton}<Text>March 4</Text>{addButton}<Text>March 5</Text>{addButton}<Text>March 6</Text>{addButton}
+            <Text>March 7</Text>{addButton}<Text>March 8</Text>{addButton}<Text>March 9</Text>{addButton}<Text>March 10</Text>{addButton}
             <Text>March 11</Text><Text>March 12</Text><Text>March 13</Text><Text>March 14</Text>
             <Text>March 15</Text><Text>March 16</Text><Text>March 17</Text><Text>March 18</Text>
             <Text>March 19</Text><Text>March 20</Text><Text>March 21</Text><Text>March 22</Text>
             <Text>March 23</Text><Text>March 24</Text><Text>March 25</Text><Text>March 26</Text>
             <Text>March 27</Text><Text>March 28</Text><Text>March 29</Text><Text>March 30</Text>
             <Text>March 31</Text></View>;
-        const apr = <View><Text>April 1</Text><Text>April 2</Text>
-            <Text>April 3</Text><Text>April 4</Text><Text>April 5</Text><Text>April 6</Text>
-            <Text>April 7</Text><Text>April 8</Text><Text>April 9</Text><Text>April 10</Text>
-            <Text>April 11</Text><Text>April 12</Text><Text>April 13</Text><Text>April 14</Text>
+        const apr = <View><Text>April 1</Text>{addButton}<Text>April 2</Text>{addButton}
+            <Text>April 3</Text>{addButton}<Text>April 4</Text>{addButton}<Text>April 5</Text>{addButton}<Text>April 6</Text>{addButton}
+            <Text>April 7</Text>{addButton}<Text>April 8</Text>{addButton}<Text>April 9</Text>{addButton}<Text>April 10</Text>{addButton}
+            <Text>April 11</Text>{addButton}<Text>April 12</Text><Text>April 13</Text><Text>April 14</Text>
             <Text>April 15</Text><Text>April 16</Text><Text>April 17</Text><Text>April 18</Text>
             <Text>April 19</Text><Text>April 20</Text><Text>April 21</Text><Text>April 22</Text>
             <Text>April 23</Text><Text>April 24</Text><Text>April 25</Text><Text>April 26</Text>
             <Text>April 27</Text><Text>April 28</Text><Text>April 29</Text><Text>April 30</Text>
         </View>;
-        const may = <View><Text>May 1</Text><Text>May 2</Text>
-            <Text>May 3</Text><Text>May 4</Text><Text>May 5</Text><Text>May 6</Text>
-            <Text>May 7</Text><Text>May 8</Text><Text>May 9</Text><Text>May 10</Text>{addButton}
+        const may = <View><Text>May 1</Text>{addButton}<Text>May 2</Text>{addButton}
+            <Text>May 3</Text>{addButton}<Text>May 4</Text>{addButton}<Text>May 5</Text>{addButton}<Text>May 6</Text>{addButton}
+            <Text>May 7</Text>{addButton}<Text>May 8</Text>{addButton}<Text>May 9</Text>{addButton}<Text>May 10</Text>{addButton}
             <Text>May 11</Text><Text>May 12</Text><Text>May 13</Text><Text>May 14</Text>
             <Text>May 15</Text><Text>May 16</Text><Text>May 17</Text><Text>May 18</Text>
             <Text>May 19</Text><Text>May 20</Text><Text>May 21</Text><Text>May 22</Text>

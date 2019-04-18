@@ -61,8 +61,8 @@ export default class LoginScreen extends React.Component {
             });
 
         //navigate to the dashboard
-        this.props.navigation.navigate('Dashboard');
-
+        this.props.navigation.navigate('Dashboard', {idd:uid});
+        //this.props.navigation.navigate('Home', {idd: uid});
         }
     }
 

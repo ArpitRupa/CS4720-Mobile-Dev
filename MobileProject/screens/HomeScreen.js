@@ -18,6 +18,7 @@ import LoginScreen from './LoginScreen.js';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
+
 // class WelcomeScreen extends Component {
 //   render() {
 //     return (
@@ -32,6 +33,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 //   }
 // }
 
+//let uid = this.props.navigation.getParam(idd);
 // Get count value from database
 // RIGHT NOW I JUST HARD CODED uid TO USE FOR TESTING BUT WILL CHANGE THAT SOON
 var firebaseRef = firebase.database().ref('Users').orderByChild('uid').equalTo("2376854179025779");
@@ -92,6 +94,7 @@ firebaseRef.once("value", snapshot => {
   }
 });
 
+
 // Fix this where it finds user of Pending Dinner
 var firebaseRef2 = firebase.database().ref('Users').orderByChild('uid').equalTo("10214085362703839");
 firebaseRef2.once("value", snapshot => {
@@ -103,7 +106,8 @@ var count = 2;
 //var show = "Jan";
 export default class HomeScreen extends Component {
   constructor() {
-    super()
+    super();
+    //var params = props.navigation.state.params.idd;
     this.state = {
       myText: 'Pending(' + count + ')',
       show: 'Jan'
@@ -119,6 +123,7 @@ export default class HomeScreen extends Component {
       //}
       currentCardInfo = weekday[i] + " " + day[i] + " " + month[i] + " - " + time[i]
       cards.push(<Card id="button"
+        class = {pendEvents[i]}
         width={(300)}
         height={(500)}
         content={currentCardInfo}
@@ -181,6 +186,14 @@ export default class HomeScreen extends Component {
     return null;
 
   }
+  showColor = (month) => {
+    if(month == this.state.show) {
+      return "#0000FF";
+    }
+    else{
+      return "#808080";
+    }
+  }
   showEvents = () => {
     //console.log(this.state.show);
     if ("Jan" == this.state.show) {
@@ -226,6 +239,8 @@ export default class HomeScreen extends Component {
     ),
   };
   render() {
+  //const uid = this.props.navigation.state.params.idd;
+  //console.log(uid);
     return (
       <ScrollView style={styles.container}>
         {/*<Text>Feed</Text>
@@ -245,84 +260,84 @@ export default class HomeScreen extends Component {
       />*/}
         <ScrollView horizontal='true' showsHorizontalScrollIndicator={false}>
           <View>
-            <Button title="Jan"
+            <Button title="Jan" color={this.showColor("Jan")}
               onPress={
                 () => this.viewEvents("Jan")
               }
             />
           </View>
           <View>
-            <Button title="Feb"
+            <Button title="Feb" color={this.showColor("Feb")}
               onPress={
                 () => this.viewEvents("Feb")
               }
             />
           </View>
           <View>
-            <Button title="Mar"
+            <Button title="Mar" color={this.showColor("Mar")}
               onPress={
                 () => this.viewEvents("Mar")
               }
             />
           </View>
           <View>
-            <Button title="Apr"
+            <Button title="Apr" color={this.showColor("Apr")}
               onPress={
                 () => this.viewEvents("Apr")
               }
             />
           </View>
           <View>
-            <Button title="May"
+            <Button title="May" color={this.showColor("May")}
               onPress={
                 () => this.viewEvents("May")
               }
             />
           </View>
           <View>
-            <Button title="Jun"
+            <Button title="Jun" color={this.showColor("Jun")}
               onPress={
                 () => this.viewEvents("Jun")
               }
             />
           </View>
           <View>
-            <Button title="Jul"
+            <Button title="Jul" color={this.showColor("Jul")}
               onPress={
                 () => this.viewEvents("Jul")
               }
             />
           </View>
           <View>
-            <Button title="Aug"
+            <Button title="Aug" color={this.showColor("Aug")}
               onPress={
                 () => this.viewEvents("Aug")
               }
             />
           </View>
           <View>
-            <Button title="Sep"
+            <Button title="Sep" color={this.showColor("Sep")}
               onPress={
                 () => this.viewEvents("Sep")
               }
             />
           </View>
           <View>
-            <Button title="Oct"
+            <Button title="Oct" color={this.showColor("Oct")}
               onPress={
                 () => this.viewEvents("Oct")
               }
             />
           </View>
           <View>
-            <Button title="Nov"
+            <Button title="Nov" color={this.showColor("Nov")}
               onPress={
                 () => this.viewEvents("Nov")
               }
             />
           </View>
           <View>
-            <Button title="Dec"
+            <Button title="Dec" color={this.showColor("Dec")}
               onPress={
                 () => this.viewEvents("Dec")
               }
