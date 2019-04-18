@@ -4,6 +4,8 @@ import Icon from '@expo/vector-icons/Ionicons';
 import firebase from './firebase';
 import InvitationDetail from './screens/InvitationDetail.js';
 import CreateEvent from './screens/CreateEvent.js';
+import HomeScreen from './screens/HomeScreen.js';
+import EventDetails from './screens/EventDetails.js';
 
 import {
   createSwitchNavigator,
@@ -21,7 +23,7 @@ class App extends Component {
   }
 }
 export default App;
-
+console.disableYellowBox = true;
 class DashboardScreen extends Component {
   render() {
     return (
@@ -62,10 +64,11 @@ class Feed extends Component {
 
 const DashboardStackNavigator = createStackNavigator(
   {
-    Feed: Feed,
+    Feed: HomeScreen,
     InvitationDetail : InvitationDetail,
     CreateEvent: CreateEvent,
-    InviteScreen: InviteScreen
+    InviteScreen: InviteScreen,
+    EventDetails: EventDetails,
     
   },
 );
@@ -73,7 +76,7 @@ const DashboardStackNavigator = createStackNavigator(
 
 
 const AppSwitchNavigator = createSwitchNavigator({
-  // Login: { screen: LoginScreen},
+  Login: { screen: LoginScreen},
   Dashboard: { screen: DashboardStackNavigator }
 });
 

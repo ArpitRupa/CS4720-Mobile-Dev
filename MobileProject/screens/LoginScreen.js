@@ -69,23 +69,26 @@ export default class LoginScreen extends React.Component {
 
     render() {
         return (
+            // <View style={styles.container}>
+            //     <ScrollView style={styles.subContainer}>
+                    
+            //             
+            //     </ScrollView>
+            // </View>
             <View style={styles.container}>
-                <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-                    <View style={styles.bigImage}>
-                        <Image
-                            source={require("../assets/Sliced/Illustration.png")}
-                        />
-                        {/* <Image
-                            style={styles.welcome}
-                            source={require("../assets/Sliced/tr.png")}
-                        /> */}
-                    </View>
-                        <Text style={styles.sloganText}> 
-                           Connecting Food Lovers. 
-                        </Text>
-                </ScrollView>
+                <View style={styles.bigImage}>
+                    <Image
+                        source={require("../assets/Sliced/Illustration.png")}
+                    />
+                    <Text style={styles.sloganText}>
+                        Connecting Food Lovers. 
+                    </Text>
+                </View>
                 <View>
-                    < TouchableOpacity
+
+                </View>
+                <View style={{flex:1}}>
+                     < TouchableOpacity
                     style = {
                         styles.getStartedButton
                     }
@@ -107,18 +110,23 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        width: "100%",
-        justifyContent: "center", 
+        flex:1,
+        justifyContent: 'space-between'
+    },
+    subContainer: {
+        flex: 1, 
     },
     bigImage: {
+        flex:9 ,
+        justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 15,
     },
 
     getStartedButton: {
-        aaspectRatio: 1.5,
+        marginBottom: 0,
+        aspectRatio: 1.5,
         resizeMode: 'contain',
     },
     getStartedImage: {
@@ -127,27 +135,6 @@ const styles = StyleSheet.create({
     sloganText: {
         textAlignVertical: "center", 
         textAlign: "center",
-        marginTop: -10,
-    },
-    
-    tabBarInfoContainer: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { height: -3 },
-                shadowOpacity: 0.1,
-                shadowRadius: 3,
-            },
-            android: {
-                elevation: 20,
-            },
-        }),
-        alignItems: 'center',
-        backgroundColor: '#fbfbfb',
-        paddingVertical: 20,
+        
     },
 });
