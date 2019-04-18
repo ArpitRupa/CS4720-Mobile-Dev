@@ -71,45 +71,37 @@ export default class LoginScreen extends React.Component {
         return (
             // <View style={styles.container}>
             //     <ScrollView style={styles.subContainer}>
-            //         <View style={styles.bigImage}>
-            //             <Image
-            //                 source={require("../assets/Sliced/Illustration.png")}
-            //             />
-            //             {/* <Image
-            //                 style={styles.welcome}
-            //                 source={require("../assets/Sliced/tr.png")}
-            //             /> */}
-            //         </View>
-            //             <Text style={styles.sloganText}> 
-            //                Connecting Food Lovers. 
-            //             </Text>
+                    
+            //             
             //     </ScrollView>
-            //     <View>
-            //         < TouchableOpacity
-            //         style = {
-            //             styles.getStartedButton
-            //         }
-            //         onPress = {
-            //             () => this.loginWithFacebook()
-            //         } >
-            //             <Image 
-            //                 style = {
-            //                     styles.getStartedImage
-            //                 }
-            //                 source={require("../assets/Sliced/getStarted.png")}
-            //             />
-            //         </TouchableOpacity>
-            //     </View>
             // </View>
             <View style={styles.container}>
                 <View style={styles.bigImage}>
-
+                    <Image
+                        source={require("../assets/Sliced/Illustration.png")}
+                    />
+                    <Text style={styles.sloganText}>
+                        Connecting Food Lovers. 
+                    </Text>
                 </View>
                 <View>
 
                 </View>
-                <View style={styles.getStartedButton}>
-
+                <View style={{flex:1}}>
+                     < TouchableOpacity
+                    style = {
+                        styles.getStartedButton
+                    }
+                    onPress = {
+                        () => this.loginWithFacebook()
+                    } >
+                        <Image 
+                            style = {
+                                styles.getStartedImage
+                            }
+                            source={require("../assets/Sliced/getStarted.png")}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -118,22 +110,24 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex:1,
+        justifyContent: 'space-between'
     },
     subContainer: {
         flex: 1, 
     },
     bigImage: {
+        flex:9 ,
+        justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: "#4286f4"
+        marginBottom: 15,
     },
 
     getStartedButton: {
+        marginBottom: 0,
         aspectRatio: 1.5,
         resizeMode: 'contain',
-        backgroundColor: "#4286f4"
     },
     getStartedImage: {
         width:"100%",
@@ -141,6 +135,6 @@ const styles = StyleSheet.create({
     sloganText: {
         textAlignVertical: "center", 
         textAlign: "center",
-        marginTop: -10,
+        
     },
 });

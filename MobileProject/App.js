@@ -5,6 +5,7 @@ import firebase from './firebase';
 import InvitationDetail from './screens/InvitationDetail.js';
 import CreateEvent from './screens/CreateEvent.js';
 import HomeScreen from './screens/HomeScreen.js';
+import EventDetails from './screens/EventDetails.js';
 
 import {
   createSwitchNavigator,
@@ -22,7 +23,7 @@ class App extends Component {
   }
 }
 export default App;
-
+console.disableYellowBox = true;
 class DashboardScreen extends Component {
   render() {
     return (
@@ -66,7 +67,8 @@ const DashboardStackNavigator = createStackNavigator(
     Feed: HomeScreen,
     InvitationDetail : InvitationDetail,
     CreateEvent: CreateEvent,
-    InviteScreen: InviteScreen
+    InviteScreen: InviteScreen,
+    EventDetails: EventDetails,
     
   },
 );

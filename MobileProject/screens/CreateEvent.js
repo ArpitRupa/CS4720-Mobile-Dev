@@ -50,7 +50,7 @@ export default class CreateEvent extends React.Component {
             })
             .catch(error => console.warn(error));
         
-        console.log(this.state);
+        // console.log(this.state);
         
     }
 
@@ -113,7 +113,7 @@ export default class CreateEvent extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',}}>
                             
-                            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>.</Text>
+                            <Text style={{ fontSize: 30, }}>.</Text>
 
                         </View>
                         <View style={{
@@ -121,7 +121,7 @@ export default class CreateEvent extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',}}>
                             
-                            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>.</Text>
+                            <Text style={{ fontSize: 30,}}>.</Text>
 
                         </View>
                     </View>
